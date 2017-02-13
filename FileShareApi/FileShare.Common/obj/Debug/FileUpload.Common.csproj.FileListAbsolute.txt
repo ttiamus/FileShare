@@ -1,0 +1,5 @@
+C:\Repo\FileUploadApi\FileUpload.Common\bin\Debug\FileUpload.Common.dll
+C:\Repo\FileUploadApi\FileUpload.Common\bin\Debug\FileUpload.Common.pdb
+C:\Repo\FileUploadApi\FileUpload.Common\obj\Debug\FileUpload.Common.csprojResolveAssemblyReference.cache
+C:\Repo\FileUploadApi\FileUpload.Common\obj\Debug\FileUpload.Common.dll
+C:\Repo\FileUploadApi\FileUpload.Common\obj\Debug\FileUpload.Common.pdb

@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileShare.AmazonS3", "FileShare.AmazonS3\FileShare.AmazonS3.csproj", "{4FC43CE0-1790-460E-BEC5-5883EDD74C7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileShare.Common", "FileShare.Common\FileShare.Common.csproj", "{065C84D3-254C-4752-806F-8B7DC6051CAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileShare.Core", "FileShare.Core\FileShare.Core.csproj", "{CECBAE22-7DC9-4819-94CA-0A4B770E0E48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileShare.Directory", "FileShare.Directory\FileShare.Directory.csproj", "{3686C57D-3361-4A80-A9D3-8803DE6E6CC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileShare.Api", "FileShare.Api\FileShare.Api.csproj", "{52029CD9-A8D9-43DD-AED6-4BCFFFCA6024}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FileShare.Database", "FileShare.Database\FileShare.Database.sqlproj", "{2BEFD509-A65E-4BD2-9BAA-5BB5E4FD474F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4FC43CE0-1790-460E-BEC5-5883EDD74C7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FC43CE0-1790-460E-BEC5-5883EDD74C7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FC43CE0-1790-460E-BEC5-5883EDD74C7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FC43CE0-1790-460E-BEC5-5883EDD74C7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{065C84D3-254C-4752-806F-8B7DC6051CAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{065C84D3-254C-4752-806F-8B7DC6051CAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{065C84D3-254C-4752-806F-8B7DC6051CAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{065C84D3-254C-4752-806F-8B7DC6051CAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CECBAE22-7DC9-4819-94CA-0A4B770E0E48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CECBAE22-7DC9-4819-94CA-0A4B770E0E48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CECBAE22-7DC9-4819-94CA-0A4B770E0E48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CECBAE22-7DC9-4819-94CA-0A4B770E0E48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3686C57D-3361-4A80-A9D3-8803DE6E6CC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3686C57D-3361-4A80-A9D3-8803DE6E6CC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3686C57D-3361-4A80-A9D3-8803DE6E6CC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3686C57D-3361-4A80-A9D3-8803DE6E6CC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52029CD9-A8D9-43DD-AED6-4BCFFFCA6024}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52029CD9-A8D9-43DD-AED6-4BCFFFCA6024}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52029CD9-A8D9-43DD-AED6-4BCFFFCA6024}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52029CD9-A8D9-43DD-AED6-4BCFFFCA6024}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BEFD509-A65E-4BD2-9BAA-5BB5E4FD474F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BEFD509-A65E-4BD2-9BAA-5BB5E4FD474F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BEFD509-A65E-4BD2-9BAA-5BB5E4FD474F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{2BEFD509-A65E-4BD2-9BAA-5BB5E4FD474F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BEFD509-A65E-4BD2-9BAA-5BB5E4FD474F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BEFD509-A65E-4BD2-9BAA-5BB5E4FD474F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

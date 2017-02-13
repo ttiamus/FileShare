@@ -1,0 +1,4 @@
+C:\Repo\FileShareApi\FileShare.Common\bin\Debug\FileShare.Common.dll
+C:\Repo\FileShareApi\FileShare.Common\bin\Debug\FileShare.Common.pdb
+C:\Repo\FileShareApi\FileShare.Common\obj\Debug\FileShare.Common.dll
+C:\Repo\FileShareApi\FileShare.Common\obj\Debug\FileShare.Common.pdb

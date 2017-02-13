@@ -1,0 +1,5 @@
+C:\Repo\FileUploadApi\FileUpload.AmazonS3\bin\Debug\FileUpload.AmazonS3.dll
+C:\Repo\FileUploadApi\FileUpload.AmazonS3\bin\Debug\FileUpload.AmazonS3.pdb
+C:\Repo\FileUploadApi\FileUpload.AmazonS3\obj\Debug\FileUpload.AmazonS3.csprojResolveAssemblyReference.cache
+C:\Repo\FileUploadApi\FileUpload.AmazonS3\obj\Debug\FileUpload.AmazonS3.dll
+C:\Repo\FileUploadApi\FileUpload.AmazonS3\obj\Debug\FileUpload.AmazonS3.pdb

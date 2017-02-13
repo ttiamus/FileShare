@@ -1,0 +1,10 @@
+C:\Repo\FileShareApi\FileUpload.Core\bin\Debug\FileUpload.Core.dll
+C:\Repo\FileShareApi\FileUpload.Core\bin\Debug\FileUpload.Core.pdb
+C:\Repo\FileShareApi\FileUpload.Core\obj\Debug\FileShare.Core.csprojResolveAssemblyReference.cache
+C:\Repo\FileShareApi\FileUpload.Core\obj\Debug\FileUpload.Core.dll
+C:\Repo\FileShareApi\FileUpload.Core\obj\Debug\FileUpload.Core.pdb
+C:\Repo\FileShareApi\FileShare.Core\bin\Debug\FileShare.Core.dll
+C:\Repo\FileShareApi\FileShare.Core\bin\Debug\FileShare.Core.pdb
+C:\Repo\FileShareApi\FileShare.Core\obj\Debug\FileShare.Core.csprojResolveAssemblyReference.cache
+C:\Repo\FileShareApi\FileShare.Core\obj\Debug\FileShare.Core.dll
+C:\Repo\FileShareApi\FileShare.Core\obj\Debug\FileShare.Core.pdb

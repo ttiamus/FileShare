@@ -1,0 +1,4 @@
+C:\Repo\FileShareApi\FileShare.AmazonS3\bin\Debug\FileShare.AmazonS3.dll
+C:\Repo\FileShareApi\FileShare.AmazonS3\bin\Debug\FileShare.AmazonS3.pdb
+C:\Repo\FileShareApi\FileShare.AmazonS3\obj\Debug\FileShare.AmazonS3.dll
+C:\Repo\FileShareApi\FileShare.AmazonS3\obj\Debug\FileShare.AmazonS3.pdb

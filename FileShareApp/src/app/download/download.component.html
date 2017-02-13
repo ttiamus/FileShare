@@ -1,0 +1,7 @@
+<div class="container">
+    <div class="row" *ngFor="let file of files">
+        <div>
+            <a (click)="getFile(file.key)">Name: {{file.Name}}</a>
+        </div>
+    </div>
+</div>
