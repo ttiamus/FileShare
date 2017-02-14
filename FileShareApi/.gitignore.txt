@@ -13,6 +13,17 @@
 *.userprefs
 
 # Build results
+FileShare.*/[Dd]ebug/
+FileShare.*/[Dd]ebugPublic/
+FileShare.*/[Rr]elease/
+FileShare.*/[Rr]eleases/
+FileShare.*/x64/
+FileShare.*/x86/
+FileShare.*/bld/
+FileShare.*/[Bb]in/
+FileShare.*/[Oo]bj/
+FileShare.*/[Ll]og/
+
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
