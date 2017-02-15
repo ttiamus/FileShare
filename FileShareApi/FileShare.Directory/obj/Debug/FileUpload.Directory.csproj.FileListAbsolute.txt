@@ -1,9 +1,0 @@
-C:\Repo\FileUploadApi\FileUpload.Directory\bin\Debug\FileUpload.Directory.dll
-C:\Repo\FileUploadApi\FileUpload.Directory\bin\Debug\FileUpload.Directory.pdb
-C:\Repo\FileUploadApi\FileUpload.Directory\bin\Debug\FileUpload.Common.dll
-C:\Repo\FileUploadApi\FileUpload.Directory\bin\Debug\FileUpload.Core.dll
-C:\Repo\FileUploadApi\FileUpload.Directory\bin\Debug\FileUpload.Common.pdb
-C:\Repo\FileUploadApi\FileUpload.Directory\bin\Debug\FileUpload.Core.pdb
-C:\Repo\FileUploadApi\FileUpload.Directory\obj\Debug\FileUpload.Directory.csprojResolveAssemblyReference.cache
-C:\Repo\FileUploadApi\FileUpload.Directory\obj\Debug\FileUpload.Directory.dll
-C:\Repo\FileUploadApi\FileUpload.Directory\obj\Debug\FileUpload.Directory.pdb

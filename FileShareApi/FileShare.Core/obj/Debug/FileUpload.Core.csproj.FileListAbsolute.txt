@@ -1,5 +1,0 @@
-C:\Repo\FileUploadApi\FileUpload.Core\bin\Debug\FileUpload.Core.dll
-C:\Repo\FileUploadApi\FileUpload.Core\bin\Debug\FileUpload.Core.pdb
-C:\Repo\FileUploadApi\FileUpload.Core\obj\Debug\FileUpload.Core.dll
-C:\Repo\FileUploadApi\FileUpload.Core\obj\Debug\FileUpload.Core.pdb
-C:\Repo\FileUploadApi\FileUpload.Core\obj\Debug\FileUpload.Core.csprojResolveAssemblyReference.cache
