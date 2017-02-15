@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace FileUpload.Core.Files
+namespace FileShare.Core.Files
 {
     public interface IFileService
     {

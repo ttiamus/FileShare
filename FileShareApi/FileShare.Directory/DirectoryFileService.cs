@@ -1,16 +1,21 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using FileUpload.Core.Files;
+using FileShare.Core.Files;
 
-namespace FileUpload.Directory
+namespace FileShare.Directory
 {
     public class DirectoryFileService : IFileService
     {
+        private readonly IFileRepository fileRepo;
+
+        public DirectoryFileService()
+        {
+            this.fileRepo = new DirectoryFileRepository();
+        }
+
         public async Task<IEnumerable<FileDto>> GetAvailableFileNames()
         {
             //Get these from Database instead of File System
@@ -23,16 +28,7 @@ namespace FileUpload.Directory
 
         public async Task SaveFile(FileDto file)
         {
-            var config = new DirectoryConfiguration();
-
-            var fileStream =  
-                new FileStream($@"{config.FileSaveLocation}\{file.Name}", FileMode.Create, 
-                FileAccess.Write, FileShare.None, bufferSize: 4096, useAsync: true);
-
-            await fileStream.WriteAsync(file.FileBytes, 0, file.FileBytes.Length);
-
-            //File.WriteAllBytes($@"{config.FileSaveLocation}\{file.Name}", file.FileBytes);
-            fileStream.Dispose();
+            
         }
 
         //Returns the file path

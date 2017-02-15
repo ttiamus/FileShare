@@ -58,4 +58,11 @@
   <ItemGroup>
     <Folder Include="Properties" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="AmazonFiles.sql" />
+    <Build Include="DirectoryFiles.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FileShare.Database.local.publish.publish.xml" />
+  </ItemGroup>
 </Project>

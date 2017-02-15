@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace FileUpload.Common.Configuration
+﻿namespace FileShare.Common.Configuration
 {
     public interface IConfiguration
     {

@@ -1,7 +1,7 @@
 ﻿using System;
-using FileUpload.Common.Configuration;
+using FileShare.Common.Configuration;
 
-namespace FileUpload.Directory
+namespace FileShare.Directory
 {
     public class DirectoryConfiguration : IConfiguration
     {

@@ -1,11 +1,10 @@
 using System.Web.Http;
+using FileShare.Api;
 using WebActivatorEx;
-using FileUploadApi;
-using Swashbuckle.Application;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
-namespace FileUploadApi
+namespace FileShare.Api
 {
     public class SwaggerConfig
     {

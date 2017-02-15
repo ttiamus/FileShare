@@ -1,24 +1,27 @@
 ﻿using System;
+using MongoDB.Bson;
 
-namespace FileUpload.Core.Files
+namespace FileShare.Core.Files
 {
     public class FileDto
     {
-        public Guid Key { get; set; }
+        public ObjectId Id { get; set; }
         public string Name { get; set; }
+        public string MimeType { get; set; }
         public byte[] FileBytes { get; set; }
 
         public FileDto(string name)
         {
-            this.Key = Guid.NewGuid();
+            this.Id = ObjectId.GenerateNewId();
             this.Name = name;
         }
 
-        public FileDto(string name, byte[] fileBytes)
+        public FileDto(string name, byte[] fileBytes, string mimeType)
         {
-            this.Key = Guid.NewGuid();
+            this.Id = ObjectId.GenerateNewId();
             this.Name = name;
             this.FileBytes = fileBytes;
+            this.MimeType = mimeType;
         }
     }
 }

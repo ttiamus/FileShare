@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.Cors;
-using FileUpload.Core.Files;
-using FileUpload.Directory;
+using FileShare.Core.Files;
+using FileShare.Directory;
 
-namespace FileUploadApi.Controllers
+namespace FileShare.Api.Controllers
 {
     public class FilesController : ApiController
     {
@@ -67,7 +63,7 @@ namespace FileUploadApi.Controllers
                 var fileName = content.Headers.ContentDisposition.FileName.Trim('\"');
                 var fileData = await content.ReadAsByteArrayAsync();
 
-                var file = new FileDto(fileName, fileData);
+                var file = new FileDto(fileName, fileData, MimeMapping.GetMimeMapping(fileName));
 
                 await fileService.SaveFile(file);
             }
