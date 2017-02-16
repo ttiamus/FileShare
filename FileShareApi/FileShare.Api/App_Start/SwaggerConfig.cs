@@ -1,5 +1,6 @@
 using System.Web.Http;
 using FileShare.Api;
+using Swashbuckle.Application;
 using WebActivatorEx;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]

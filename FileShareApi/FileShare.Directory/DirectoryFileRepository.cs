@@ -14,7 +14,7 @@ namespace FileShare.Directory
     {
         private readonly DirectoryConfiguration config;
         private readonly MongoContext context;
-        DirectoryFileRepository()
+        public DirectoryFileRepository()
         {
             this.config = new DirectoryConfiguration();
             this.context = new MongoContext();

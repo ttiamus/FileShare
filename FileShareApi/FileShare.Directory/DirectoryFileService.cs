@@ -28,7 +28,7 @@ namespace FileShare.Directory
 
         public async Task SaveFile(FileDto file)
         {
-            
+            await fileRepo.SaveFile(file);
         }
 
         //Returns the file path

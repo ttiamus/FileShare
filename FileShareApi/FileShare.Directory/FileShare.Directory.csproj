@@ -70,6 +70,10 @@
       <Project>{CECBAE22-7DC9-4819-94CA-0A4B770E0E48}</Project>
       <Name>FileShare.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FileShare.MongoDb\FileShare.MongoDb.csproj">
+      <Project>{0D734D4A-315D-47C3-8EFE-00797BDD354D}</Project>
+      <Name>FileShare.MongoDb</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
