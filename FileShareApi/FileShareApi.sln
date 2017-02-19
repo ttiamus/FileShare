@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileShare.Directory", "File
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileShare.Api", "FileShare.Api\FileShare.Api.csproj", "{52029CD9-A8D9-43DD-AED6-4BCFFFCA6024}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FileShare.Database", "FileShare.Database\FileShare.Database.sqlproj", "{2BEFD509-A65E-4BD2-9BAA-5BB5E4FD474F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileShare.MongoDb", "FileShare.MongoDb\FileShare.MongoDb.csproj", "{0D734D4A-315D-47C3-8EFE-00797BDD354D}"
 EndProject
 Global
@@ -43,12 +41,6 @@ Global
 		{52029CD9-A8D9-43DD-AED6-4BCFFFCA6024}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52029CD9-A8D9-43DD-AED6-4BCFFFCA6024}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52029CD9-A8D9-43DD-AED6-4BCFFFCA6024}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2BEFD509-A65E-4BD2-9BAA-5BB5E4FD474F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2BEFD509-A65E-4BD2-9BAA-5BB5E4FD474F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2BEFD509-A65E-4BD2-9BAA-5BB5E4FD474F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{2BEFD509-A65E-4BD2-9BAA-5BB5E4FD474F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2BEFD509-A65E-4BD2-9BAA-5BB5E4FD474F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2BEFD509-A65E-4BD2-9BAA-5BB5E4FD474F}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{0D734D4A-315D-47C3-8EFE-00797BDD354D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0D734D4A-315D-47C3-8EFE-00797BDD354D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D734D4A-315D-47C3-8EFE-00797BDD354D}.Release|Any CPU.ActiveCfg = Release|Any CPU

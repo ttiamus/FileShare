@@ -6,8 +6,10 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using FileShare.AmazonS3.Files;
 using FileShare.Core.Files;
 using FileShare.Directory;
+using MongoDB.Bson;
 
 namespace FileShare.Api.Controllers
 {
@@ -17,7 +19,7 @@ namespace FileShare.Api.Controllers
 
         public FilesController()
         {
-            this.fileService = new DirectoryFileService();
+            this.fileService = new AmazonFileService();
         }
 
         // GET api/files
@@ -25,7 +27,7 @@ namespace FileShare.Api.Controllers
         /// Get All
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<FileDto>> Get()
+        public async Task<IEnumerable<IMetadata>> Get()
         {
             return await fileService.GetAvailableFileNames();
         }
@@ -39,13 +41,15 @@ namespace FileShare.Api.Controllers
         [Route("files/{key}")]
         public async Task<HttpResponseMessage> Get(string key)
         {
-            var localFilePath = await fileService.GetFile(key);
-            var fileName = Path.GetFileName(localFilePath);
+            var fileTask = fileService.GetFile(ObjectId.Parse(key));
+            //var fileName = Path.GetFileName(localFilePath);
 
             HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
-            response.Content = new StreamContent(new FileStream(localFilePath, FileMode.Open, FileAccess.Read));
-            response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment") {FileName = fileName};
-            response.Content.Headers.ContentType = new MediaTypeHeaderValue(MimeMapping.GetMimeMapping(fileName));
+            
+            var file = await fileTask;
+            response.Content = new StreamContent(new MemoryStream(file.FileBytes));
+            response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment") {FileName = file.Metadata.FileName};
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue(file.Metadata.MimeType);
             
             return response;
         }
@@ -57,20 +61,20 @@ namespace FileShare.Api.Controllers
 
             var provider = new MultipartMemoryStreamProvider();
             await Request.Content.ReadAsMultipartAsync(provider);
+
+            var fileList = new List<FileDto>();
             foreach (var content in provider.Contents)
             {
                 
                 var fileName = content.Headers.ContentDisposition.FileName.Trim('\"');
                 var fileData = await content.ReadAsByteArrayAsync();
 
-                var file = new FileDto(fileName, fileData, MimeMapping.GetMimeMapping(fileName));
-
-                await fileService.SaveFile(file);
+                fileList.Add(new FileDto(fileName, fileData, MimeMapping.GetMimeMapping(fileName)));
             }
 
+            await fileService.SaveFiles(fileList);
             return Ok();
         }
-
 
         // DELETE api/files/5
         /// <summary>
@@ -78,23 +82,10 @@ namespace FileShare.Api.Controllers
         /// </summary>
         /// <param name="key"></param>
         [Route("files/{key}")]
-        public void Delete(string key)
+        public async Task Delete(string key)
         {
-            fileService.DeleteFile(key);
+            await fileService.DeleteFile(ObjectId.Parse(key));
         }
     }
 
-    // We implement MultipartFormDataStreamProvider to override the filename of File which
-    // will be stored on server, or else the default name will be of the format like Body-
-    // Part_{GUID}. In the following implementation we simply get the FileName from 
-    // ContentDisposition Header of the Request Body.
-    public class CustomMultipartFormDataStreamProvider : MultipartFormDataStreamProvider
-    {
-        public CustomMultipartFormDataStreamProvider(string path) : base(path) { }
-
-        public override string GetLocalFileName(HttpContentHeaders headers)
-        {
-            return headers.ContentDisposition.FileName.Replace("\"", string.Empty);
-        }
-    }
 }
