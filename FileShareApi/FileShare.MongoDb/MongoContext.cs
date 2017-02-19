@@ -6,15 +6,15 @@ namespace FileShare.MongoDb
 {
     public class MongoContext
     {
-        public IMongoCollection<AmazonFile> AmazonFiles { get; set; }
-        public IMongoCollection<DirectoryFile> DirectoryFiles { get; set; }
+        public IMongoCollection<AmazonMetadata> AmazonMetadata { get; set; }
+        public IMongoCollection<DirectoryMetadata> DirectoryMetadata{ get; set; }
 
         public MongoContext()
         {
             var client = new MongoClient("mongodb://localhost:27017");
             var database = client.GetDatabase("foo");
-            AmazonFiles = database.GetCollection<AmazonFile>("AmazonFiles");
-            DirectoryFiles = database.GetCollection<DirectoryFile>("DirectoryFiles");
+            AmazonMetadata = database.GetCollection<AmazonMetadata>("AmazonMetadata");
+            DirectoryMetadata = database.GetCollection<DirectoryMetadata>("DirectoryMetadata");
         }
     }
 }

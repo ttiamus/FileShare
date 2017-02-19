@@ -4,57 +4,72 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using FileShare.Core.Files;
+using MongoDB.Bson;
 
 namespace FileShare.Directory
 {
     public class DirectoryFileService : IFileService
     {
         private readonly IFileRepository fileRepo;
+        private readonly IMetadataRepository metadataRepo;
 
         public DirectoryFileService()
         {
             this.fileRepo = new DirectoryFileRepository();
+            this.metadataRepo = new MetadataRepository();
         }
 
-        public async Task<IEnumerable<FileDto>> GetAvailableFileNames()
+        public async Task<IEnumerable<IMetadata>> GetAvailableFileNames()
         {
-            //Get these from Database instead of File System
-            var config = new DirectoryConfiguration();
-            var files = Task.Run(() => 
-                System.IO.Directory.GetFiles(config.FileSaveLocation)
-                .Select(file => new FileDto(Path.GetFileName(file))).ToList());
-            return await files;
+            return await metadataRepo.GetMetadataForAllFiles();
+        }
+
+        public async Task SaveFiles(IEnumerable<FileDto> files)
+        {
+            var saveTasks = files.Select(SaveFile).ToList();
+            await Task.WhenAll(saveTasks);
         }
 
         public async Task SaveFile(FileDto file)
         {
-            await fileRepo.SaveFile(file);
+
+            var fileTask = fileRepo.SaveFile(file);
+            var metadataTask = metadataRepo.SaveMetadata(file.Metadata);
+
+            try
+            {
+                await Task.WhenAll(fileTask, metadataTask);
+            }
+            catch(Exception e)
+            {
+                //Log exception
+
+                if (fileTask.IsFaulted)
+                {
+                    //rollBack the fileSave
+                }
+
+                if (metadataTask.IsFaulted)
+                {
+                    //rollback metadata save
+                }
+            }
         }
 
         //Returns the file path
-        public async Task<string> GetFile(string key)
+        public async Task<FileDto> GetFile(ObjectId key)
         {
-            //Get fileName by key from database....
-            var fileName = "pdf.pdf";
-            var config = new DirectoryConfiguration();
-            var files = Task.Run(() => 
-                System.IO.Directory.GetFiles(config.FileSaveLocation)
-                .ToList().First(file => 
-                    Path.GetFileName(file).Equals(fileName, StringComparison.InvariantCultureIgnoreCase)
-                )
-            );
-
-            //Use key to filter instead....
-            return await files;
+            var metadata = await metadataRepo.GetMetadataForFile(key);
+            return await fileRepo.GetFile(metadata);
         }
 
-        public Task DeleteFile(string key)
+        public async Task DeleteFile(ObjectId id)
         {
-            //use key to get fileName...
-            var fileName = "test.txt";
-            var config = new DirectoryConfiguration();
-            var path = $@"{config.FileSaveLocation}\{fileName}";
-            return Task.Run(() => { File.Delete(path); });
+            var metadata = await metadataRepo.GetMetadataForFile(id);
+            var deleteFileTask = fileRepo.DeleteFile(metadata);
+            var deleteMetadataTask = metadataRepo.DeleteMetadata(id);
+
+            await Task.WhenAll(deleteFileTask, deleteMetadataTask);
         }
     }
 }

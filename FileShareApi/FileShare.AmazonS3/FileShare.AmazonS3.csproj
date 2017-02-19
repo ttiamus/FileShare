@@ -56,10 +56,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Files\AmazonConfiguration.cs" />
+    <Compile Include="Files\AmazonFileRepository.cs" />
+    <Compile Include="Files\AmazonFileService.cs" />
+    <Compile Include="Files\AmazonMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FileShare.Core\FileShare.Core.csproj">
+      <Project>{CECBAE22-7DC9-4819-94CA-0A4B770E0E48}</Project>
+      <Name>FileShare.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
