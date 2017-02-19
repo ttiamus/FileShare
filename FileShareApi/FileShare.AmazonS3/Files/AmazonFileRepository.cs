@@ -41,7 +41,6 @@ namespace FileShare.AmazonS3.Files
                                   s3Exception.InnerException);
             }
         }
-    
 
         public Task<FileDto> GetFile(IMetadata metadata)
         {
