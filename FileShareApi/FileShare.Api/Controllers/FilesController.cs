@@ -29,7 +29,7 @@ namespace FileShare.Api.Controllers
         /// <returns></returns>
         public async Task<IEnumerable<IMetadata>> Get()
         {
-            return await fileService.GetAvailableFileNames();
+            return await fileService.GetFileNames();
         }
 
         // GET api/files/5

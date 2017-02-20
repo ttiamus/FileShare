@@ -12,7 +12,7 @@ namespace FileShare.MongoDb
         public MongoContext()
         {
             var client = new MongoClient("mongodb://localhost:27017");
-            var database = client.GetDatabase("foo");
+            var database = client.GetDatabase("fileshare");
             AmazonMetadata = database.GetCollection<AmazonMetadata>("AmazonMetadata");
             DirectoryMetadata = database.GetCollection<DirectoryMetadata>("DirectoryMetadata");
         }

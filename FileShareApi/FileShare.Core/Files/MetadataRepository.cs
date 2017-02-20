@@ -18,7 +18,20 @@ namespace FileShare.Core.Files
             this.context = new MongoContext();
         }
 
-        public async Task SaveMetadata(IMetadata file)
+        public async Task<Metadata> GetMetadataForFile(ObjectId id)
+        {
+            var result = await context.DirectoryMetadata.Find(x => x.Id == id).ToListAsync();
+            var metadata = result.First();
+            return new Metadata(metadata.Id, metadata.FileName, metadata.MimeType, metadata.Size);
+        }
+
+        public async Task<IEnumerable<Metadata>> GetMetadataForAllFiles()
+        {
+            var result = await context.DirectoryMetadata.Find(x => true).ToListAsync();
+            return result.Select(x => new Metadata(x.Id, x.FileName, x.MimeType, x.Size));
+        }
+
+        public async Task SaveMetadata(IMetadata file, bool replace = false)
         {
             var task = Task.Run(() =>
             {
@@ -31,24 +44,16 @@ namespace FileShare.Core.Files
                     UploadedBy = "CurrentUser",
                     DateAdded = DateTime.Now.Date
                 };
-                context.DirectoryMetadata.InsertOneAsync(directoryFile);
+
+                if (replace)
+                    context.DirectoryMetadata.ReplaceOneAsync(x => x.Id.Equals(file.Id),directoryFile);
+                else
+                    context.DirectoryMetadata.InsertOneAsync(directoryFile);
             });
 
             await task;
         }
-
-        public async Task<IEnumerable<Metadata>> GetMetadataForAllFiles()
-        {
-            var result = await context.DirectoryMetadata.Find(x => true).ToListAsync();
-            return result.Select(x => new Metadata(x.Id, x.FileName, x.MimeType, x.Size));
-        }
-
-        public async Task<Metadata> GetMetadataForFile(ObjectId id)
-        {
-            var result = await context.DirectoryMetadata.Find(x => x.Id == id).ToListAsync();
-            var metadata = result.First();
-            return new Metadata(metadata.Id, metadata.FileName, metadata.MimeType, metadata.Size);
-        }
+        
 
         public async Task DeleteMetadata(ObjectId id)
         {

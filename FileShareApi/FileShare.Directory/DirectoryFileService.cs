@@ -19,7 +19,7 @@ namespace FileShare.Directory
             this.metadataRepo = new MetadataRepository();
         }
 
-        public async Task<IEnumerable<IMetadata>> GetAvailableFileNames()
+        public async Task<IEnumerable<IMetadata>> GetFileNames()
         {
             return await metadataRepo.GetMetadataForAllFiles();
         }

@@ -6,7 +6,7 @@ namespace FileShare.Core.Files
 {
     public interface IMetadataRepository
     {
-        Task SaveMetadata(IMetadata file);
+        Task SaveMetadata(IMetadata file, bool replace = false);
         Task<IEnumerable<Metadata>> GetMetadataForAllFiles();
         Task<Metadata> GetMetadataForFile(ObjectId id);
         Task DeleteMetadata(ObjectId id);

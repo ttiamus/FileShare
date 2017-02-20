@@ -17,26 +17,15 @@ namespace FileShare.AmazonS3.Files
             this.metadataRepo = new MetadataRepository();
         }
 
-        public async Task SaveFiles(IEnumerable<FileDto> files)
+        public async Task<IEnumerable<IMetadata>> GetFileNames()
         {
-            var tasks = files.Select(SaveFile).ToList();
-
-            await Task.WhenAll(tasks);
+            return await metadataRepo.GetMetadataForAllFiles();
         }
 
-        public Task<IEnumerable<IMetadata>> GetAvailableFileNames()
+        public async Task<FileDto> GetFile(ObjectId key)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<FileDto> GetFile(ObjectId key)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task DeleteFile(ObjectId key)
-        {
-            throw new System.NotImplementedException();
+            var metadataTask = metadataRepo.GetMetadataForFile(key);
+            return await fileRepo.GetFile(await metadataTask);
         }
 
         public async Task SaveFile(FileDto file)
@@ -45,6 +34,30 @@ namespace FileShare.AmazonS3.Files
             var metadataTask = metadataRepo.SaveMetadata(file.Metadata);
 
             await Task.WhenAll(fileTask, metadataTask);
+        }
+
+        public async Task SaveFiles(IEnumerable<FileDto> files)
+        {
+            var tasks = files.Select(SaveFile).ToList();
+
+            await Task.WhenAll(tasks);
+        }
+
+        public async Task UpdateFile(FileDto file)
+        {
+            var fileTask = fileRepo.SaveFile(file);     //If the file has the same key, then it will be updated by default
+            var metadataTask = metadataRepo.SaveMetadata(file.Metadata, true);
+
+            await Task.WhenAll(fileTask, metadataTask);
+        }
+
+        public async Task DeleteFile(ObjectId key)
+        {
+            var metadata = await metadataRepo.GetMetadataForFile(key);
+            var deleteFileTask = fileRepo.DeleteFile(metadata);
+            var deleteMetadataTask = metadataRepo.DeleteMetadata(key);
+
+            await Task.WhenAll(deleteFileTask, deleteMetadataTask);
         }
     }
 }

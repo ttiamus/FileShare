@@ -60,7 +60,9 @@
     <Compile Include="Files\IFileRepositoroy.cs" />
     <Compile Include="Files\IFileService.cs" />
     <Compile Include="Files\IMetadataRepository.cs" />
+    <Compile Include="Files\IMetadataService.cs" />
     <Compile Include="Files\MetadataRepository.cs" />
+    <Compile Include="Files\MetadataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

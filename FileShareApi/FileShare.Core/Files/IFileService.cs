@@ -7,7 +7,7 @@ namespace FileShare.Core.Files
     public interface IFileService
     {
         Task SaveFiles(IEnumerable<FileDto> files);
-        Task<IEnumerable<IMetadata>> GetAvailableFileNames();
+        Task<IEnumerable<IMetadata>> GetFileNames();
         Task<FileDto> GetFile(ObjectId key);
         Task DeleteFile(ObjectId key);
         Task SaveFile(FileDto file);
