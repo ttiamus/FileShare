@@ -11,7 +11,7 @@ namespace FileShare.MongoDb
 
         public MongoContext()
         {
-            var client = new MongoClient("mongodb://localhost:27017");
+            var client = new MongoClient(new MongoConfiguration().ConnectionString);
             var database = client.GetDatabase("fileshare");
             AmazonMetadata = database.GetCollection<AmazonMetadata>("AmazonMetadata");
             DirectoryMetadata = database.GetCollection<DirectoryMetadata>("DirectoryMetadata");

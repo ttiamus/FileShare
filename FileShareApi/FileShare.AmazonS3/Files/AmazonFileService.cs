@@ -30,20 +30,32 @@ namespace FileShare.AmazonS3.Files
 
         public async Task SaveFile(FileDto file)
         {
+            Task metadataTask;
+            if (file.Metadata.Id.Equals(ObjectId.Empty))
+            {
+                file.Metadata.Id = ObjectId.GenerateNewId();
+                metadataTask = metadataRepo.SaveMetadata(file.Metadata);
+            }
+            else
+            {
+                metadataTask = metadataRepo.SaveMetadata(file.Metadata, true);
+            }
+                
             var fileTask = fileRepo.SaveFile(file);
-            var metadataTask = metadataRepo.SaveMetadata(file.Metadata);
 
             await Task.WhenAll(fileTask, metadataTask);
         }
 
+        //Currently not supported
         public async Task SaveFiles(IEnumerable<FileDto> files)
         {
-            var tasks = files.Select(SaveFile).ToList();
+            //var tasks = files.Select(SaveFile).ToList();
+            var tasks = files.Select(file => file.Metadata.Id.Equals(ObjectId.Empty) ? SaveFile(file) : UpdateFile(file)).ToList();
 
             await Task.WhenAll(tasks);
         }
 
-        public async Task UpdateFile(FileDto file)
+        private async Task UpdateFile(FileDto file)
         {
             var fileTask = fileRepo.SaveFile(file);     //If the file has the same key, then it will be updated by default
             var metadataTask = metadataRepo.SaveMetadata(file.Metadata, true);

@@ -8,8 +8,11 @@ namespace FileShare.Api
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            var cors = new EnableCorsAttribute("http://localhost:4200", "*", "*");
-            config.EnableCors(cors);
+            var localCors = new EnableCorsAttribute("http://localhost:4200", "*", "*");
+            var prodCors = new EnableCorsAttribute("http://file-share.ttiamus.com", "*", "*");
+
+            config.EnableCors(prodCors);
+            config.EnableCors(localCors);
 
             // Web API routes
             config.MapHttpAttributeRoutes();

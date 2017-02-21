@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -9,6 +11,7 @@ using System.Web.Http;
 using FileShare.AmazonS3.Files;
 using FileShare.Core.Files;
 using FileShare.Directory;
+using Microsoft.Ajax.Utilities;
 using MongoDB.Bson;
 
 namespace FileShare.Api.Controllers
@@ -54,7 +57,9 @@ namespace FileShare.Api.Controllers
             return response;
         }
 
-        public async Task<IHttpActionResult> Post()
+
+        /* This was inteded to take multiple files at once, but that's a problem with updates.
+        public async Task Post()
         {
             if (!Request.Content.IsMimeMultipartContent())
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
@@ -65,15 +70,34 @@ namespace FileShare.Api.Controllers
             var fileList = new List<FileDto>();
             foreach (var content in provider.Contents)
             {
-                
                 var fileName = content.Headers.ContentDisposition.FileName.Trim('\"');
                 var fileData = await content.ReadAsByteArrayAsync();
 
                 fileList.Add(new FileDto(fileName, fileData, MimeMapping.GetMimeMapping(fileName)));
             }
-
             await fileService.SaveFiles(fileList);
-            return Ok();
+        }*/
+
+        //currently only supports uploading 1 file at a time
+        public async Task Post()
+        {
+            if (!Request.Content.IsMimeMultipartContent("form-data"))
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            var provider = await Request.Content.ReadAsMultipartAsync(new InMemoryMultipartFormDataStreamProvider());
+
+            var formData = provider.FormData;
+
+            var file = provider.Files.First();
+            var fileName = file.Headers.ContentDisposition.FileName.Trim('\"');
+            var fileData = await file.ReadAsByteArrayAsync();
+
+            if(formData["id"].IsNullOrWhiteSpace())
+                await fileService.SaveFile(new FileDto(fileName, fileData, MimeMapping.GetMimeMapping(fileName)));
+            else
+                await fileService.SaveFile(new FileDto(formData["id"], fileName, fileData, MimeMapping.GetMimeMapping(fileName)));
         }
 
         // DELETE api/files/5

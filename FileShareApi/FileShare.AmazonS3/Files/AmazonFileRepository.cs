@@ -11,7 +11,12 @@ namespace FileShare.AmazonS3.Files
 {
     public class AmazonFileRepository : IFileRepository
     {
-        static string bucket = "ht-file-share";
+        private readonly AmazonConfiguration amazonConfig;
+
+        public AmazonFileRepository()
+        {
+            this.amazonConfig = new AmazonConfiguration();
+        }
 
         public async Task<FileDto> GetFile(IMetadata metadata)
         {
@@ -19,8 +24,8 @@ namespace FileShare.AmazonS3.Files
 
             var request = new GetObjectRequest()
             {
-                BucketName = bucket,
-                Key = metadata.FileName
+                BucketName = amazonConfig.BucketName,
+                Key = metadata.Id.ToString()
             };
 
             var response = await client.GetObjectAsync(request);
@@ -52,7 +57,7 @@ namespace FileShare.AmazonS3.Files
                     var request = new TransferUtilityUploadRequest()
                     {
                         AutoCloseStream = true,
-                        BucketName = bucket,
+                        BucketName = amazonConfig.BucketName,
                         ContentType = file.Metadata.MimeType,
                         InputStream = fileToUpload,
                         StorageClass = S3StorageClass.ReducedRedundancy,
@@ -66,8 +71,7 @@ namespace FileShare.AmazonS3.Files
             }
             catch (AmazonS3Exception s3Exception)
             {
-                Console.WriteLine(s3Exception.Message,
-                                  s3Exception.InnerException);
+                //Log Exception
             }
         }
 
@@ -76,8 +80,8 @@ namespace FileShare.AmazonS3.Files
             var client = new AmazonS3Client(Amazon.RegionEndpoint.USEast1);
             var request = new DeleteObjectRequest()
             {
-                BucketName = bucket,
-                Key = metadata.FileName,
+                BucketName = amazonConfig.BucketName,
+                Key = metadata.Id.ToString(),
             };
 
             await client.DeleteObjectAsync(request);

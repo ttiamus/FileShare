@@ -20,6 +20,12 @@ namespace FileShare.Core.Files
             this.FileBytes = fileBytes;
             this.Metadata = new Metadata(name, mimeType, fileBytes.Length);
         }
+
+        public FileDto(string id, string name, byte[] fileBytes, string mimeType)
+        {
+            this.FileBytes = fileBytes;
+            this.Metadata = new Metadata(ObjectId.Parse(id), name, mimeType, fileBytes.Length);
+        }
     }
 
     public interface IMetadata
@@ -39,7 +45,7 @@ namespace FileShare.Core.Files
 
         public Metadata(string name, string mimeType, int fileSize)
         {
-            this.Id = ObjectId.GenerateNewId();
+            //this.Id = ObjectId.GenerateNewId();
             FileName = name;
             MimeType = mimeType;
             FileSize = fileSize;
