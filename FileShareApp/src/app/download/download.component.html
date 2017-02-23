@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row" *ngFor="let file of files">
         <div>
-            <a (click)="getFile(file.key)">Name: {{file.Name}}</a>
+            <a (click)="getFile(file.Id)">Name: {{file.FileName}}</a>
         </div>
     </div>
 </div>

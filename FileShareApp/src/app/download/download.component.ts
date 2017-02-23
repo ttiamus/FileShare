@@ -11,7 +11,6 @@ import { File, FileService } from './../shared/file.service';
 })
 export class DownloadComponent implements OnInit {
     files: File[];
-    //files: string[]
     
     constructor(private fileService: FileService) { }
 
@@ -20,7 +19,8 @@ export class DownloadComponent implements OnInit {
         this.fileService.getFiles().then(files => this.files = files);
      }
 
-     getFile(key: string) {
-        this.fileService.getFile(key);
+     getFile(id: string) {
+         console.log(id);
+        this.fileService.getFile(id);
      }
 }
